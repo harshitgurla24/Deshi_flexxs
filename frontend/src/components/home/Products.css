@@ -1,0 +1,139 @@
+.products-section {
+  padding: 2rem 1rem;
+  background-color: #f8fafc;
+}
+
+@media (min-width: 640px) {
+  .products-section {
+    padding: 2.5rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-section {
+    padding: 3rem 1rem;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+.sort-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.sort-options select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: white;
+  color: #1f2937;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .section-header {
+    flex-direction: column;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .sort-options {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .sort-options select {
+    flex: 1;
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .products-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: white;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 1.05rem;
+}

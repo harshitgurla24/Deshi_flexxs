@@ -1,0 +1,92 @@
+.services-page {
+  padding: 6rem 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.services-hero h1 {
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.services-hero p {
+  font-size: 1.25rem;
+  color: #6b7280;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.service-card h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.services-cta {
+  text-align: center;
+  background: #f3f4f6;
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.services-cta h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.services-cta p {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.services-cta button {
+  background: #2563eb;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.services-cta button:hover {
+  background: #1d4ed8;
+}
