@@ -1,0 +1,42 @@
+.quickview-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.quickview-card {
+  width: 92%;
+  max-width: 900px;
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  position: relative;
+}
+.qv-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+.qv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; }
+.qv-image img { width: 100%; height: 320px; object-fit: cover; border-radius: 8px; }
+.qv-meta h3 { margin: 0 0 8px 0; }
+.qv-desc { color: #6b7280; margin-bottom: 12px; }
+.qv-price { font-weight: 800; font-size: 1.4rem; margin-bottom: 12px; }
+.qv-actions { display:flex; gap:8px; }
+.qv-cart { background: #1d4ed8; color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+.qv-wish { background: #f3f4f6; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+.qv-wish.wished { background: #fff0f0; color: #ef4444; }
+.qv-extra { margin-top:12px; color:#6b7280; display:flex; gap:12px; }
+
+@media (max-width: 720px) {
+  .qv-grid { grid-template-columns: 1fr; }
+  .qv-image img { height: 220px; }
+}

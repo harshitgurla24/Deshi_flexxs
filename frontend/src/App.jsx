@@ -19,6 +19,7 @@ import SignUp from './pages/SignUp';
 import Checkout from './pages/Checkout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Footer from './components/layout/Footer';
+import Wishlist from './pages/Wishlist';
 import './App.css';
 
 const Home = () => (
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/wishlist" element={<Wishlist />} />
               </Routes>
             </main>
             <Footer />
