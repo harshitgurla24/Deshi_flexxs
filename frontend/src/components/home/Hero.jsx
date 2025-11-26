@@ -15,13 +15,13 @@ const Hero = () => {
       code: 'SUMMER50',
     },
     {
-      image: 'https://images.unsplash.com/photo-1469632669055-97a0ab1d5d0c?w=1400&h=600&fit=crop&q=80',
+      image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1400&h=600&fit=crop&q=80',
       title: 'Trending Now',
       subtitle: 'Casual Wear Sale',
       code: 'CASUAL30',
     },
     {
-      image:'https://images.unsplash.com/photo-1441123694162-71aadd912865?w=1400&h=600&fit=crop&q=80',
+      image:'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1400&h=600&fit=crop&q=80',
       title: 'New Arrivals',
       subtitle: 'Latest Fashion',
       code: 'NEW20',

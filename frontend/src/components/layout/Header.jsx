@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCartIcon, UserIcon, Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, UserIcon, Bars3Icon, XMarkIcon, MagnifyingGlassIcon, HeartIcon } from '@heroicons/react/24/outline';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../features/authSlice';
-import { categories, products } from '../../data/products';
+import { products } from '../../data/products';
 import './Header.css';
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchRef = useRef(null);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const navigate = useNavigate();
@@ -71,14 +71,12 @@ const Header = () => {
   }, []);
 
   const handleCategoryClick = () => {
-    setIsCategoriesOpen(false);
     setIsMoreOpen(false);
     setIsMenuOpen(false);
   };
 
   const handleNavLinkClick = () => {
     setIsMenuOpen(false);
-    setIsCategoriesOpen(false);
     setIsMoreOpen(false);
     setIsSearchOpen(false);
   };
@@ -204,36 +202,11 @@ const Header = () => {
         )}
         <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <ul>
-            <li><Link to="/" onClick={handleNavLinkClick}>Home</Link></li>
+            <li><Link to="/category/men" onClick={handleNavLinkClick}>Men</Link></li>
+            <li><Link to="/category/women" onClick={handleNavLinkClick}>Women</Link></li>
+            <li><Link to="/category/kids" onClick={handleNavLinkClick}>Kids</Link></li>
+            <li><Link to="/offers" onClick={handleNavLinkClick}>Offers</Link></li>
             
-            <li className="categories-menu">
-              <button 
-                className="categories-button"
-                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-              >
-                Categories
-                <span className="dropdown-icon">▼</span>
-              </button>
-              {isCategoriesOpen && (
-                <div className="categories-dropdown">
-                  <div className="dropdown-header">All Categories</div>
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.id}
-                      to={`/category/${encodeURIComponent(cat.name)}`}
-                      className="dropdown-item"
-                      onClick={handleCategoryClick}
-                    >
-                      <span className="cat-icon">{cat.icon}</span>
-                      <span className="cat-name">{cat.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </li>
-            
-            <li><Link to="/products" onClick={handleNavLinkClick}>Products</Link></li>
-            <li><Link to="/services" onClick={handleNavLinkClick}>Services</Link></li>
             
             <li className="categories-menu">
               <button 
@@ -284,6 +257,14 @@ const Header = () => {
                     <span className="cat-name">About</span>
                   </Link>
                   <Link
+                    to="/services"
+                    className="dropdown-item"
+                    onClick={handleCategoryClick}
+                  >
+                    <span style={{fontSize:'1.1rem'}}>🛎️</span>
+                    <span className="cat-name">Services</span>
+                  </Link>
+                  <Link
                     to="/contact"
                     className="dropdown-item"
                     onClick={handleCategoryClick}
@@ -309,13 +290,16 @@ const Header = () => {
         </nav>
 
         <div className="header-actions">
-          <Link to="/cart" className="cart-icon" onClick={handleNavLinkClick}>
+          <Link to="/wishlist" className="wishlist-icon" onClick={handleNavLinkClick} title="Wishlist">
+            <HeartIcon className="h-6 w-6" />
+          </Link>
+          <Link to="/cart" className="cart-icon" onClick={handleNavLinkClick} title="Bag">
             <ShoppingCartIcon className="h-6 w-6" />
             {cartItemCount > 0 && (
               <span className="cart-count">{cartItemCount}</span>
             )}
           </Link>
-          <Link to="/profile" className="account-icon" onClick={handleNavLinkClick}>
+          <Link to="/profile" className="account-icon" onClick={handleNavLinkClick} title="Profile">
             <UserIcon className="h-6 w-6" />
           </Link>
         </div>

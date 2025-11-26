@@ -1,22 +1,23 @@
 .hero-section {
   margin-top: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 6;
-  min-height: 280px;
+  /* Use a responsive height that's shorter by default */
+  height: clamp(220px, 30vh, 360px);
+  min-height: 350px;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    aspect-ratio: 4 / 3;
-    min-height: 220px;
+    height: clamp(160px, 28vh, 300px);
+    min-height: 250px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    aspect-ratio: 1 / 1;
-    min-height: 180px;
+    height: 140px;
+    min-height: 120px;
   }
 }
 
@@ -37,40 +38,42 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%);
+  /* stronger subtle fade toward the bottom for readability */
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 65%);
   z-index: 1;
 }
 
 .hero-content {
   position: absolute;
-  bottom: 2rem;
   left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
-  max-width: 450px;
+  max-width: 420px;
   color: white;
 }
 
 @media (max-width: 768px) {
   .hero-content {
-    bottom: 1.5rem;
     left: 1.5rem;
-    max-width: 280px;
+    transform: translateY(-50%);
+    max-width: 320px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-content {
-    bottom: 1rem;
     left: 1rem;
-    max-width: 200px;
+    transform: translateY(-50%);
+    max-width: 220px;
   }
 }
 
 .hero-content h2 {
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
-  margin-bottom: 0.3rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.25rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
@@ -87,9 +90,9 @@
 }
 
 .hero-content p {
-  font-size: 1.1rem;
-  margin-bottom: 0.8rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
@@ -107,11 +110,11 @@
 }
 
 .promo-code {
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.17);
+  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
   display: inline-block;
   backdrop-filter: blur(4px);
 }
@@ -127,14 +130,14 @@
 .hero-button {
   background: linear-gradient(135deg, #1d4ed8, #1e40af);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.25rem;
   border: none;
   border-radius: 6px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-size: 0.98rem;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.22);
 }
 
 @media (max-width: 768px) {
@@ -168,6 +171,9 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
+  z-index: 12; /* above overlay and content */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .swiper-button-prev:hover,
@@ -188,6 +194,26 @@
   .swiper-button-next {
     display: none;
   }
+}
+
+/* Ensure nav arrows are positioned inside the hero area and not clipped */
+.swiper-button-prev {
+  left: 12px;
+}
+.swiper-button-next {
+  right: 12px;
+}
+
+/* Center content for very small screens for better appearance */
+@media (max-width: 480px) {
+  .hero-content {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 92%;
+  }
+  .hero-content h2 { font-size: 1.15rem; }
+  .promo-code { display: block; margin: 0.35rem auto 0.6rem; }
 }
 
 .swiper-pagination-bullet {

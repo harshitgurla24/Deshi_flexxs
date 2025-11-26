@@ -17,6 +17,8 @@ const CategoryPage = () => {
   const categoryObj = categories.find(
     (cat) => cat.name.toLowerCase() === decodedCategory.toLowerCase()
   );
+  const compactCategories = ['men', 'women', 'kids'];
+  const isCompact = compactCategories.includes(categoryObj?.name?.toLowerCase());
 
   useEffect(() => {
     let filtered = products.filter(
@@ -56,20 +58,13 @@ const CategoryPage = () => {
 
   return (
     <div className="category-page">
-      <div className="category-banner">
-        <div className="banner-content">
-          <div className="category-icon">{categoryObj.icon}</div>
-          <h1>{categoryObj.name}</h1>
-          <p>{filteredProducts.length} products available</p>
-        </div>
-      </div>
 
-      <div className="category-container">
-        {/* Sidebar Filters */}
-        <aside className="filters-sidebar">
+      <div className={`category-container ${isCompact ? 'no-sidebar' : ''}`}>
+        {/* Sidebar Filters (hidden for compact categories like Men/Women/Kids) */}
+        {!isCompact && (
+          <aside className="filters-sidebar">
           <div className="filter-section">
-            <h3>Sort By</h3>
-            <div className="sort-options">
+            <div className={`sort-options ${isCompact ? 'compact' : ''}`}>
               <label>
                 <input
                   type="radio"
@@ -77,7 +72,6 @@ const CategoryPage = () => {
                   checked={sortBy === 'popular'}
                   onChange={(e) => setSortBy(e.target.value)}
                 />
-                Most Popular
               </label>
               <label>
                 <input
@@ -86,7 +80,6 @@ const CategoryPage = () => {
                   checked={sortBy === 'price-low'}
                   onChange={(e) => setSortBy(e.target.value)}
                 />
-                Price: Low to High
               </label>
               <label>
                 <input
@@ -95,7 +88,6 @@ const CategoryPage = () => {
                   checked={sortBy === 'price-high'}
                   onChange={(e) => setSortBy(e.target.value)}
                 />
-                Price: High to Low
               </label>
               <label>
                 <input
@@ -104,14 +96,26 @@ const CategoryPage = () => {
                   checked={sortBy === 'rating'}
                   onChange={(e) => setSortBy(e.target.value)}
                 />
-                Highest Rated
               </label>
             </div>
-          </div>
-        </aside>
+            </div>
+          </aside>
+        )}
 
         {/* Products Grid */}
         <main className="products-section">
+          {/* Compact top sort for compact categories (Men/Women/Kids) */}
+          {isCompact && (
+            <div className="top-sort">
+              <label>Sort:</label>
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                <option value="popular">Most Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
+          )}
           {filteredProducts.length > 0 ? (
             <div className="products-grid">
               {filteredProducts.map((product) => (

@@ -109,6 +109,10 @@
     margin: 2.5rem auto;
     padding: 0 1rem;
   }
+  /* When sidebar is intentionally hidden (e.g., Men category), make products full width */
+  .category-container.no-sidebar {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -116,6 +120,9 @@
     grid-template-columns: 250px 1fr;
     gap: 2.5rem;
     margin: 3rem auto;
+  }
+  .category-container.no-sidebar {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -200,9 +207,35 @@
 .sort-options input[type="radio"] {
   cursor: pointer;
   accent-color: #667eea;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
+}
+
+/* Compact variant for sort options (used on Men category) */
+.sort-options.compact label {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+.sort-options.compact input[type="radio"] { width: 14px; height: 14px; }
+
+/* Top compact sort bar for Men category */
+.top-sort {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.top-sort label { color: #6b7280; font-weight: 600; font-size: 0.9rem; }
+.top-sort select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  font-size: 0.9rem;
+  color: #374151;
 }
 
 .price-range {
@@ -287,21 +320,22 @@
 
 .products-grid {
   display: grid;
+  /* Compact card sizing */
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem 1rem;
+  gap: 0.75rem 0.75rem;
 }
 
 @media (min-width: 480px) {
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1.125rem 1.125rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.875rem 0.875rem;
   }
 }
 
 @media (min-width: 640px) {
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.25rem 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem 1rem;
   }
 }
 
@@ -344,18 +378,18 @@
   position: relative;
   overflow: hidden;
   background: #f9fafb;
-  height: 160px;
+  height: 120px;
 }
 
 @media (min-width: 480px) {
   .product-image-container {
-    height: 180px;
+    height: 130px;
   }
 }
 
 @media (min-width: 640px) {
   .product-image-container {
-    height: 200px;
+    height: 140px;
   }
 }
 
@@ -390,26 +424,27 @@
 }
 
 .product-info {
-  padding: 15px;
+  padding: 10px 12px;
 }
 
 .product-name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-  color: #1f2937;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #0f172a;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-height: 1.15;
 }
 
 .product-description {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #6b7280;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -417,14 +452,14 @@
 .rating {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
+  gap: 4px;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
 }
 
 .stars {
   display: flex;
-  gap: 2px;
+  gap: 1px;
 }
 
 .rating-number {
@@ -434,31 +469,31 @@
 
 .review-count {
   color: #9ca3af;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .price-section {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
 .price {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #1f2937;
 }
 
 .original-price {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #9ca3af;
   text-decoration: line-through;
 }
 
 .add-to-cart-btn {
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   background: #2563eb;
   color: white;
   border: none;
@@ -466,7 +501,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .add-to-cart-btn:hover {

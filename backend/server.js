@@ -11,7 +11,9 @@ const app = express();
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
 
 app.use(cors({ origin: FRONTEND_ORIGIN, credentials: true }));
-app.use(express.json());
+// Allow larger JSON payloads (avatar base64 uploads can be large)
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 connectDB();
 

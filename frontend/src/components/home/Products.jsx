@@ -9,8 +9,6 @@ const ProductsSection = () => {
   return (
     <section className="products-section">
       <div className="container">
-        <h2 className="section-title">Our Products</h2>
-
         <div className="results-info">
           <p>Showing {filteredProducts.length} products</p>
         </div>

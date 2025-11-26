@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  height: 60px;
+  height: 64px;
 }
 
 @media (min-width: 640px) {
@@ -35,16 +35,16 @@
 }
 
 .search-container {
-  flex: 1;
-  max-width: 600px;
+  flex: 1 1 480px;
+  max-width: 720px;
   display: none;
   position: relative;
 }
 
 .search-container.desktop-search {
   display: flex;
-  max-width: 450px;
-  margin: 0 auto;
+  max-width: 720px;
+  margin: 0 1rem;
 }
 
 @media (min-width: 1024px) {
@@ -200,7 +200,8 @@
   .nav-menu {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 1rem;
+    margin-left: 1rem;
   }
 }
 
@@ -208,10 +209,10 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  inset: 60px 0 0 0;
+  inset: var(--header-height) 0 0 0;
   background-color: white;
   z-index: 50;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - var(--header-height));
   overflow-y: auto;
 }
 
@@ -251,18 +252,19 @@
 }
 
 .nav-menu a {
-  color: #4b5563;
-  font-weight: 500;
-  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.92rem;
   text-decoration: none;
-  transition: color 0.2s;
-  padding: 0.35rem 0.7rem;
-  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  text-transform: none;
 }
 
 .nav-menu a:hover {
-  color: #1d4ed8;
-  background: rgba(29, 78, 216, 0.06);
+  color: #111827;
+  background: rgba(17, 24, 39, 0.04);
 }
 
 /* Categories Menu Dropdown */
@@ -351,25 +353,8 @@
   border-left-color: #667eea;
   padding-left: 14px;
 }
-
-.cat-icon {
-  font-size: 1.2rem;
-}
-
 .cat-name {
   font-weight: 500;
-}
-
-.dropdown-item.view-all {
-  border-top: 1px solid #f3f4f6;
-  margin-top: 8px;
-  background: linear-gradient(135deg, #f0f4ff 0%, #f5f7fa 100%);
-  font-weight: 600;
-  color: #2563eb;
-}
-
-.dropdown-item.view-all:hover {
-  background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
 }
 
 @media (max-width: 1024px) {
@@ -424,6 +409,33 @@
   justify-content: center;
   border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem;
+  border-radius: 8px;
+  color: #6b7280;
+}
+.wishlist-icon:hover { color: #ef4444; background: rgba(239,68,68,0.06); }
+
+/* Make header slightly taller on desktop for the Myntra-like look */
+@media (min-width: 1024px) {
+  .header-container { height: 72px; }
+  .logo-text { font-size: 1.05rem; }
+}
+
+/* Ensure search is very prominent on desktop */
+@media (min-width: 1280px) {
+  .search-container.desktop-search { max-width: 880px; }
+}
+
+/* Small screens: keep compact */
+@media (max-width: 767px) {
+  .search-container.desktop-search { display: none; }
+  .nav-menu { display: none; }
 }
 
 /* Search suggestions dropdown */
@@ -515,7 +527,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 5rem;
+  padding-top: calc(var(--header-height) + 8px);
 }
 
 @media (max-width: 1023px) {
@@ -524,7 +536,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 5rem;
+    padding-top: calc(var(--header-height) + 8px);
   }
 }
 

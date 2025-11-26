@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserProfile, cancelOrder } from '../features/ordersSlice';
@@ -15,6 +15,7 @@ const Profile = () => {
   const [formData, setFormData] = useState(userProfile);
   const [activeTab, setActiveTab] = useState('orders');
   const [selectedProductModal, setSelectedProductModal] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +36,41 @@ const Profile = () => {
         alert(err.response?.data?.error || 'Update failed');
       }
     })();
+  };
+
+  const handleAvatarFile = async (file) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const dataUrl = reader.result;
+      try {
+        const res = await API.put('/api/profile', { avatar: dataUrl });
+        const updated = res.data.user;
+        setFormData(updated);
+        dispatch(updateUserProfile(updated));
+        alert('Profile photo updated');
+      } catch (err) {
+        alert(err.response?.data?.error || 'Upload failed');
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const onChooseAvatar = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleRemoveAvatar = async () => {
+    if (!window.confirm('Remove profile photo?')) return;
+    try {
+      const res = await API.put('/api/profile', { avatar: '' });
+      const updated = res.data.user;
+      setFormData(updated);
+      dispatch(updateUserProfile(updated));
+      alert('Profile photo removed');
+    } catch (err) {
+      alert(err.response?.data?.error || 'Remove failed');
+    }
   };
 
   useEffect(() => {
@@ -87,11 +123,28 @@ const Profile = () => {
         {/* Profile Header */}
         <div className="profile-header">
           <div className="profile-avatar">
-            <div className="avatar-circle">{userProfile.name.charAt(0)}</div>
+            {formData?.avatar ? (
+              <img src={formData.avatar} alt={formData.name} className="avatar-img" />
+            ) : (
+              <div className="avatar-circle">{(formData?.name || userProfile?.name || 'U').charAt(0)}</div>
+            )}
+            <div className="avatar-actions">
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                ref={fileInputRef}
+                onChange={(e) => handleAvatarFile(e.target.files?.[0])}
+              />
+              <button className="btn btn-small" onClick={onChooseAvatar}>Change Photo</button>
+              {formData?.avatar && (
+                <button className="btn btn-small btn-remove" onClick={handleRemoveAvatar}>Remove</button>
+              )}
+            </div>
           </div>
           <div className="profile-header-info">
-            <h1>{userProfile.name}</h1>
-            <p className="member-since">Member since {userProfile.memberSince}</p>
+            <h1>{formData?.name || userProfile?.name}</h1>
+            <p className="member-since">Member since {formData?.memberSince || userProfile?.memberSince}</p>
           </div>
         </div>
 

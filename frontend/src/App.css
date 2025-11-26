@@ -1,5 +1,8 @@
 :root{
   --bg: #f8fafc;
+    /* Height used by the fixed header (adjust if header container height changes)
+      Default matches desktop header; responsive overrides follow. */
+    --header-height: 64px;
   --card: #ffffff;
   --muted: #6b7280;
   --primary: #0f172a;
@@ -18,12 +21,17 @@ body{
 }
 
 .app{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1;margin-top:120px;width:100%;}
+/* Space main below the fixed header so page content doesn't underlap */
+main{flex:1;margin-top:var(--header-height);width:100%;}
+
+@media (min-width: 1024px) {
+  :root { --header-height: 72px; }
+}
 
 /* Category Bar */
 .category-bar{
   position: fixed;
-  top: 60px;
+  top: var(--header-height);
   left: 0;
   width: 100%;
   background: white;

@@ -1,7 +1,7 @@
 .checkout-page {
   min-height: 60vh;
   padding: 2rem 1rem;
-  margin-top: 80px;
+  margin-top: var(--header-height, 72px);
   background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
 }
 
