@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
+import wishlistRoutes from "./routes/wishlistRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -19,6 +23,10 @@ connectDB();
 
 app.use("/api", authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api', productRoutes);
+app.use('/api', reviewRoutes);
+app.use('/api', wishlistRoutes);
+app.use('/api', cartRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

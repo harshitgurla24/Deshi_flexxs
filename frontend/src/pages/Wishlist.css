@@ -1,0 +1,17 @@
+.wishlist-item .view-button,
+.wishlist-item .remove-button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.wishlist-item .view-button {
+  background: #1d4ed8;
+  color: white;
+}
+
+.wishlist-item .remove-button {
+  background: #ef4444;
+  color: white;
+}

@@ -418,8 +418,27 @@
   padding: 0.45rem;
   border-radius: 8px;
   color: #6b7280;
+  position: relative;
 }
 .wishlist-icon:hover { color: #ef4444; background: rgba(239,68,68,0.06); }
+
+.wishlist-count {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  min-width: 1.05rem;
+  height: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+}
 
 /* Make header slightly taller on desktop for the Myntra-like look */
 @media (min-width: 1024px) {

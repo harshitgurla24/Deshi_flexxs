@@ -21,6 +21,8 @@ const Header = () => {
   const currentUser = useSelector((state) => state.auth.user);
   const cartItems = useSelector((state) => state.cart.items);
   const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const wishlistItems = useSelector((state) => state.wishlist?.items || []);
+  const wishlistCount = wishlistItems.length;
   const authRef = useRef(null);
 
   const handleSearch = (e) => {
@@ -292,6 +294,7 @@ const Header = () => {
         <div className="header-actions">
           <Link to="/wishlist" className="wishlist-icon" onClick={handleNavLinkClick} title="Wishlist">
             <HeartIcon className="h-6 w-6" />
+            {wishlistCount > 0 && (<span className="wishlist-count">{wishlistCount}</span>)}
           </Link>
           <Link to="/cart" className="cart-icon" onClick={handleNavLinkClick} title="Bag">
             <ShoppingCartIcon className="h-6 w-6" />
