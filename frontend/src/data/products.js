@@ -50,8 +50,8 @@ export const products = [
   { id: 19, name: 'Kids Hoodie', description: 'Cozy hoodie with front pocket', price: 699.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Kids', rating: 4.5, reviews: 44, inStock: true },
   { id: 19, name: 'Kids Hoodie', description: 'Cozy hoodie with front pocket', price: 699.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Kids', rating: 4.5, reviews: 44, inStock: true },
   { id: 19, name: 'Kids Hoodie', description: 'Cozy hoodie with front pocket', price: 699.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Kids', rating: 4.5, reviews: 44, inStock: true },
-  { id: 20, name: 'Weekend Tote Bag', description: 'Durable canvas tote for daily use', price: 899.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Accessories', rating: 4.6, reviews: 98, inStock: true }
-  { id: 20, name: 'Weekend Tote Bag', description: 'Durable canvas tote for daily use', price: 899.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Accessories', rating: 4.6, reviews: 98, inStock: true }
+  { id: 20, name: 'Weekend Tote Bag', description: 'Durable canvas tote for daily use', price: 899.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Accessories', rating: 4.6, reviews: 98, inStock: true },
+  { id: 20, name: 'Weekend Tote Bag', description: 'Durable canvas tote for daily use', price: 899.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Accessories', rating: 4.6, reviews: 98, inStock: true },
   { id: 20, name: 'Weekend Tote Bag', description: 'Durable canvas tote for daily use', price: 899.0, image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80', category: 'Accessories', rating: 4.6, reviews: 98, inStock: true }
 ];
 
