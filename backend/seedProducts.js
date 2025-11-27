@@ -16,7 +16,6 @@ const run = async () => {
     const products = module.products || module.default || [];
 
     if (!products || !products.length) {
-      console.log('No products found in frontend file:', frontendProducts);
       process.exit(0);
     }
 
@@ -38,7 +37,6 @@ const run = async () => {
     }));
 
     await Product.insertMany(docs);
-    console.log(`Seeded ${docs.length} products`);
     process.exit(0);
   } catch (err) {
     console.error('Seeding failed', err);
