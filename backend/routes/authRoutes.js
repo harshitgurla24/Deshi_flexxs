@@ -11,9 +11,10 @@ const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: 
 // Generate 6-digit OTP
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
-// Send OTP via console (for development - replace with SMS service like Twilio in production)
-const sendOTP = (phone, otp) => {
-  console.log(`OTP for ${phone}: ${otp}`);
+// sendOTP stub: implement SMS provider in production (Twilio, etc.)
+const sendOTP = async (phone, otp) => {
+  // Intentionally left blank for security in this build (no console logging of OTPs).
+  // Replace this function with SMS provider integration in production.
   return true;
 };
 
@@ -106,26 +107,8 @@ router.post('/verify-otp', async (req, res) => {
   }
 });
 
-// Original signup (without OTP) - kept for backward compatibility
-router.post('/signup', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) return res.status(400).json({ error: 'Missing fields' });
-
-    const existing = await User.findOne({ email });
-    if (existing) return res.status(409).json({ error: 'Email already registered' });
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ name, email, password: hashedPassword });
-    await user.save();
-
-    const token = signToken(user._id);
-    res.json({ message: 'User registered', token, user: { id: user._id, name: user.name, email: user.email } });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
+// Note: non-OTP `/signup` route removed to avoid duplicated/ambiguous signup flows.
+// Use `/send-otp` and `/verify-otp` endpoints for signup with phone verification.
 
 router.post('/signin', async (req, res) => {
   try {
